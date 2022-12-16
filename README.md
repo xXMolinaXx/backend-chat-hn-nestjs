@@ -1,6 +1,5 @@
 # INDICE
 1. [ Instalacion ](#intro)
-- a
 
 ---
 
