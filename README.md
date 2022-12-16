@@ -1,6 +1,6 @@
 # INDICE
 1. [ Instalacion ](#intro)
-
+2. [ responsabilidad única ](#responsabilidadUnica)
 ---
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
@@ -32,6 +32,13 @@
     - nest --help
 -  crear nuevo proyecto : **nest new -nombre-**
 - npm start : iniciar
+
+<a name="responsabilidadUnica">
+
+## responsabilidad unica
+<p>
+La S de SOLID hace referencia a “Single Responsibility” y recomienda que cada pieza de software debe tener una única función. Por ejemplo, un controlador de productos no debería encargarse de categorías o de usuarios. Se debe crear un controlador para cada entidad que la aplicación necesite
+</p>
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
