@@ -30,7 +30,7 @@
 - npm i -g @nestjs/cli
     - nest --version
     - nest --help
--  crear nuevo proyecto : **nest new <nombre>**
+-  crear nuevo proyecto : **nest new -nombre-**
 - npm start : iniciar
 
 <p align="center">
