@@ -1,8 +1,9 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
+  // las rutas no dinamicas deben de colocarse primero
   constructor(private readonly appService: AppService) {}
 
   @Get()
@@ -27,5 +28,12 @@ export class AppController {
   getPorducts3(@Param('id') id: any, @Param('id2') id2: any) {
     return `products id ${id} y id2 ${id2}`;
   }
-  
+  // parametros query
+  // products4 url example localhost:3000/products4?limit=1&offset=2
+  // se puede aplicar dividir los paramtros sin hacer la desctrucutarion
+  @Get('products4')
+  getPorducts4(@Query() params: any, @Query('otro') otro: any) {
+    const { limit, offset } = params;
+    return `limit => ${limit} y offset => ${offset} otro => ${otro}`;
+  }
 }
