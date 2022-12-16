@@ -6,6 +6,8 @@ import {
   Put,
   Param,
   Delete,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 /*
 Nota: @Controller ya nos crea la ruta por defecto de products, los metodos get solo deben escribirse la ruta extra aparte de products
@@ -25,6 +27,7 @@ export class ProductsController {
     return { id, payload };
   }
   @Delete(':id')
+  @HttpCode(HttpStatus.OK)
   delete(@Param('id') id: any, @Body() payload: any) {
     return id;
   }
