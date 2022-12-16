@@ -15,7 +15,7 @@ export class AppController {
     return 'soy nuevo';
   }
   // Two way of receiving params in routes
-  @Get('products/:id')
+  @Get('product/:id')
   getPorducts(@Param() params: any) {
     return `products id ${params.id}`;
   }

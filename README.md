@@ -41,7 +41,8 @@ La S de SOLID hace referencia a “Single Responsibility” y recomienda que cad
 
 En NestJS, una buena práctica es crear un directorio llamado controllers donde se agruparán todos los controladores que tu aplicación necesite. Ese ya es un buen paso para mantener el orden en tu proyecto.
 </p>
--  nest generate controller  **controller-name**
+-  nest generate controller  **directorio/controller-name**
+  - --flat:bandera para que no cre una carpeta con el nombre asignado  
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
