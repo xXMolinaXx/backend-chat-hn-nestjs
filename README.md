@@ -1,6 +1,7 @@
 # INDICE
 1. [ Instalacion ](#intro)
 2. [ responsabilidad única ](#responsabilidadUnica)
+3. [ service-intro](#service-intro)
 ---
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
@@ -48,6 +49,14 @@ En NestJS, una buena práctica es crear un directorio llamado controllers donde 
 
 ## SERVICE INTRO
 - nest g s services/products --flat
+## PIPE
+- https://docs.nestjs.com/pipes
+- https://docs.nestjs.com/pipes#built-in-pipes
+<p> ParseIntPipe - verifica y transforma a number </p>
+- nest g pipe common/-nombre-
+
+## data transfer object
+- 
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>

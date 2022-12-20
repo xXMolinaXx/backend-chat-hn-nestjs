@@ -17,8 +17,8 @@ export class ProductsService {
     return this.products;
   }
   findOne(id) {
-    const product =  this.products.find((item) => item.id === id);
-    if (!product) throw new  NotFoundException('error para buscar');
+    const product = this.products.find((item) => item.id === id);
+    if (!product) throw new NotFoundException('error para buscar'); // IMPORTANT
     return product;
   }
   create(payload: any) {
@@ -27,6 +27,6 @@ export class ProductsService {
       id: this.counter,
       ...payload,
     };
-    return newProduct
+    return newProduct;
   }
 }
