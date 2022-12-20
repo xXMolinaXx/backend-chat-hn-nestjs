@@ -44,6 +44,11 @@ En NestJS, una buena práctica es crear un directorio llamado controllers donde 
 -  nest generate controller  **directorio/controller-name**
   - --flat:bandera para que no cre una carpeta con el nombre asignado  
 
+<a name="service-intro ">
+
+## SERVICE INTRO
+- nest g s services/products --flat
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
