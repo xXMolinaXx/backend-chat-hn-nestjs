@@ -10,9 +10,9 @@ import {
   HttpStatus,
   ParseIntPipe,
 } from '@nestjs/common';
-import { PipePipe } from '../common/pipe/pipe.pipe';
-import { ProductsService } from '../service/products.service';
-import { CreateProductsDto } from '../dtos/products.dtos' 
+import { PipePipe } from '../../common/pipe/pipe.pipe';
+import { ProductsService } from '../services/products.service';
+import { CreateProductsDto } from '../dtos/products.dtos';
 /*
 Nota: @Controller ya nos crea la ruta por defecto de products, los metodos get solo deben escribirse la ruta extra aparte de products
 */
