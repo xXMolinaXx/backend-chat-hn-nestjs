@@ -40,6 +40,7 @@ En NestJS, una buena práctica es crear un directorio llamado controllers donde 
 ## SERVICE INTRO
 
 - nest g s services/products --flat
+-  The @Injectable() decorator attaches metadata, which declares that **name**Service is a class that can be managed by the Nest IoC container
 
 ## PIPE
 
