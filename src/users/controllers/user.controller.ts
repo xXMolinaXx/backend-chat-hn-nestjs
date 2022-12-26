@@ -23,7 +23,7 @@ export class UserController {
   }
   @Get('/purchase/:id')
   getUserPurchase(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.getOrderByUser;
+    return this.userService.getOrderByUser(id);
   }
   @Post()
   createUser(@Body() newUser: any) {

@@ -77,6 +77,13 @@ But first (if you use TypeScript), we need to determine the DTO (Data Transfer O
 
 - se debe de hacer un import y export
 
+
+## useValue and useClass
+- usa esta etiqueta para buscar los ejemplos
+- use value nos sirve para tener valores constantes y poder inyectarlo en los otros modulos
+
+## useFactory
+- use factory nos permite tener asincronia y inyection de valores
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
