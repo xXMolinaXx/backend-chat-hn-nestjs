@@ -84,6 +84,28 @@ But first (if you use TypeScript), we need to determine the DTO (Data Transfer O
 
 ## useFactory
 - use factory nos permite tener asincronia y inyection de valores
+- El tipo de inyección useFactory permite que realices un proceso asíncrono para inyectar un servicio o datos provenientes de una API.
+- La propiedad inject permite que inyectes (valga la redundancia) dentro de esta función asíncrona del useFactory otros servicios que este pueda necesitar. En el ejemplo anterior, se está haciendo una llamada a un request para obtener datos.
+## Global modul
+- en la forma interior no se puede usar lo que se vio en useValue y use factory en otros modulos solo en los appcontroller
+
+## CONFIG MODULE
+- NOS PERMITE TENER VARIABLES DE ENTORNO CON .ENV
+- @nestjs/config este paquete se instala  
+```
+import { ConfigModule } from '@nestjs/config' ;
+// en module el decordador modulo se agrega en el imports
+ConfigModule.forRoot({
+  envFilePath: 'ruta',
+ isGlobal: true
+})
+```
+- con la configuracion anterior ya solo se ocupa inyectar
+
+```
+private configService:ConfigService
+```
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>

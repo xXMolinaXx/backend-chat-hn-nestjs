@@ -7,7 +7,7 @@ export class AppService {
     @Inject('TASK') private task: string /**useFactory */,
   ) {}
   getHello(): string {
-    console.log(this.task);
+    console.log(this.task[0]); //useFactory
     return `Hello World! ${this.apiKey} --`; /**useValue and useClass */
   }
 }
