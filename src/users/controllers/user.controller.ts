@@ -8,9 +8,10 @@ import {
   Body,
   Delete,
 } from '@nestjs/common';
+import { answerPeticionsInterface } from 'src/common/interfaces/answer.interface';
 import { UserService } from '../services/user.service';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
   @Get()
@@ -27,8 +28,8 @@ export class UserController {
   }
   @Post()
   createUser(@Body() newUser: any) {
-    this.userService.insertOne(newUser);
-    return true;
+    const answer = this.userService.insertOne(newUser);
+    return answer;
   }
   @Delete(':id')
   deleteUser(@Param('id', ParseIntPipe) id: number) {

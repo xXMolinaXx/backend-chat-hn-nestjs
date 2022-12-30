@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { HttpModule, HttpService } from '@nestjs/axios';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { catchError, firstValueFrom } from 'rxjs';
 import { GlobalModule } from './global/global.module';
-
 
 @Module({
   imports: [UsersModule, HttpModule, GlobalModule],

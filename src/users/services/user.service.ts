@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { answerPeticionsInterface } from 'src/common/interfaces/answer.interface';
 import { ProductsService } from 'src/products/services/products.service';
 import { UserEntity } from '../entities/users.entity';
 // (interacion entre modulos)IMPORTANT
@@ -24,9 +25,13 @@ export class UserService {
   findAll() {
     return this.users;
   }
-  insertOne(newUser) {
-    this.users.push(newUser);
-    return true;
+  insertOne(newUser): answerPeticionsInterface {
+    try {
+      this.users.push(newUser);
+      return { success: true, message: 'todo bien' };
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
   }
   deleteOne(id) {
     this.users = this.users.filter((el) => el.id !== id);
