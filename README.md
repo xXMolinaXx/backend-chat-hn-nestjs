@@ -78,11 +78,11 @@ But first (if you use TypeScript), we need to determine the DTO (Data Transfer O
 - se debe de hacer un import y export
 
 
-## useValue and useClass
+## useValue and useClass !importantes
 - usa esta etiqueta para buscar los ejemplos
 - use value nos sirve para tener valores constantes y poder inyectarlo en los otros modulos
 
-## useFactory
+## useFactory !importantes
 - use factory nos permite tener asincronia y inyection de valores
 - El tipo de inyección useFactory permite que realices un proceso asíncrono para inyectar un servicio o datos provenientes de una API.
 - La propiedad inject permite que inyectes (valga la redundancia) dentro de esta función asíncrona del useFactory otros servicios que este pueda necesitar. En el ejemplo anterior, se está haciendo una llamada a un request para obtener datos.

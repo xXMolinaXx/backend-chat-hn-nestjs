@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { HttpModule, HttpService } from '@nestjs/axios';
-
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
@@ -8,7 +8,15 @@ import { catchError, firstValueFrom } from 'rxjs';
 import { GlobalModule } from './global/global.module';
 
 @Module({
-  imports: [UsersModule, HttpModule, GlobalModule],
+  imports: [
+    UsersModule,
+    HttpModule,
+    GlobalModule,
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
+  ],
   controllers: [AppController],
   providers: [
     AppService,
