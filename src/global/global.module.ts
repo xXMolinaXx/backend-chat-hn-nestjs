@@ -1,9 +1,18 @@
 import { Module, Global } from '@nestjs/common';
 import { MongoClient } from 'mongodb';
+import { MongooseModule } from '@nestjs/mongoose';
 const API_KEY = 'LOCALHOST:5000'; /**useValue and useClass  Global Module*/
 
 @Global()
 @Module({
+  imports: [
+    MongooseModule.forRoot(
+      'mongodb+srv://test:FPcwk29AVKedclvX@cluster0.iszp5h4.mongodb.net/chat_hn?retryWrites=true&w=majority',
+      {
+        dbName: 'chat_hn',
+      },
+    ),
+  ],
   providers: [
     { provide: 'API_KEY', useValue: API_KEY } /*useValue and useClass */,
     {
@@ -18,6 +27,6 @@ const API_KEY = 'LOCALHOST:5000'; /**useValue and useClass  Global Module*/
       },
     },
   ],
-  exports: ['API_KEY', 'MONGO'], // Global Module
+  exports: ['API_KEY', 'MONGO', MongooseModule], // Global Module
 })
 export class GlobalModule {}

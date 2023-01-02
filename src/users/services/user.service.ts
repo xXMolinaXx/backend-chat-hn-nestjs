@@ -1,42 +1,42 @@
 import { Injectable } from '@nestjs/common';
-import { answerPeticionsInterface } from 'src/common/interfaces/answer.interface';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import {
+  answerPeticionsInterface,
+  userLoginInterface,
+} from 'src/common/interfaces/answer.interface';
 import { ProductsService } from 'src/products/services/products.service';
-import { UserEntity } from '../entities/users.entity';
+import { users } from '../entities/users.entity';
+import { UsersModule } from '../users.module';
 // (interacion entre modulos)IMPORTANT
 @Injectable()
 export class UserService {
-  private counter = 0;
-  private users: UserEntity[] = [
-    {
-      id: 1,
-      name: 'Kenny',
-      description: 'Hi, whatsup',
-      birthDate: new Date(),
-      lastName: 'Molina',
-      password: '1234',
-    },
-  ];
   constructor(
     private productsService: ProductsService /*(interacion entre modulos)IMPORTANT*/,
+    @InjectModel(users.name) private userModel: Model<users>,
   ) {}
   findOne(id) {
-    return this.users.find((el) => el.id === id);
+    return this.userModel.findById(id).exec();
   }
   findAll() {
-    return this.users;
+    return this.userModel.find().exec();
   }
-  insertOne(newUser): answerPeticionsInterface {
-    try {
-      this.users.push(newUser);
-      return { success: true, message: 'todo bien' };
-    } catch (error) {
-      return { success: false, message: error.message };
-    }
+  async insertOne(newUser) {
+    const user = new this.userModel(newUser);
+    return await user.save();
   }
-  deleteOne(id) {
-    this.users = this.users.filter((el) => el.id !== id);
-    return true;
+  async login(
+    userLogin: userLoginInterface,
+  ): Promise<Record<string, never> | users> {
+    const { userName, password } = userLogin;
+    const userLogged = await this.userModel.findOne({ userName: userName });
+    if (userLogged?.password !== password) return {};
+    return userLogged;
   }
+  // deleteOne(id) {
+  //   this.users = this.users.filter((el) => el.id !== id);
+  //   return true;
+  // }
   getOrderByUser(id: number) {
     const user = this.findOne(id);
     const purchase = this.productsService.findAll();

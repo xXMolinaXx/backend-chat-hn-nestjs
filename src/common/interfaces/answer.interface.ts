@@ -1,5 +1,9 @@
 export interface answerPeticionsInterface {
-  success: boolean;
+  statusCode: number;
   message: string;
   data?: any;
+}
+export interface userLoginInterface {
+  userName: string;
+  password: string;
 }
