@@ -1,13 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+
 import {
   answerPeticionsInterface,
   userLoginInterface,
 } from 'src/common/interfaces/answer.interface';
 import { ProductsService } from 'src/products/services/products.service';
+import { createUserDTO } from '../dtos/users.dto';
 import { users } from '../entities/users.entity';
-import { UsersModule } from '../users.module';
+import { response } from 'express';
+
 // (interacion entre modulos)IMPORTANT
 @Injectable()
 export class UserService {
@@ -21,9 +24,15 @@ export class UserService {
   findAll() {
     return this.userModel.find().exec();
   }
-  async insertOne(newUser) {
-    const user = new this.userModel(newUser);
-    return await user.save();
+  async insertOne(newUser: createUserDTO): Promise<any> {
+    const findUser = await this.userModel
+      .findOne({ userName: newUser.userName })
+      .exec();
+    if (!findUser) {
+      const user = new this.userModel(newUser);
+      return await user.save();
+    }
+    return;
   }
   async login(
     userLogin: userLoginInterface,

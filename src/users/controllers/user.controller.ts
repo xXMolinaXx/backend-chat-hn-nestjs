@@ -10,7 +10,7 @@ import {
   HttpCode,
 } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common/enums';
-import { HttpException } from '@nestjs/common/exceptions';
+import { BadRequestException, HttpException } from '@nestjs/common/exceptions';
 import { ApiTags } from '@nestjs/swagger';
 import {
   answerPeticionsInterface,
@@ -42,7 +42,10 @@ export class UserController {
     @Body() newUser: createUserDTO,
   ): Promise<answerPeticionsInterface> {
     const answer = await this.userService.insertOne(newUser);
-    return { statusCode: 201, message: 'user created', data: answer };
+    if (answer) {
+      return { statusCode: 201, message: 'user created', data: answer };
+    }
+    throw new BadRequestException('El nombre de usaurio ya existe');
   }
   @Post('login')
   async login(
