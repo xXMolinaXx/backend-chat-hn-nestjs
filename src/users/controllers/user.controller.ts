@@ -8,6 +8,7 @@ import {
   Body,
   Delete,
   HttpCode,
+  Put,
 } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common/enums';
 import { BadRequestException, HttpException } from '@nestjs/common/exceptions';
@@ -16,7 +17,7 @@ import {
   answerPeticionsInterface,
   userLoginInterface,
 } from 'src/common/interfaces/answer.interface';
-import { createUserDTO } from '../dtos/users.dto';
+import { createUserDTO, updateUserDTO } from '../dtos/users.dto';
 import { UserService } from '../services/user.service';
 @ApiTags('users')
 @Controller('users')
@@ -31,10 +32,6 @@ export class UserController {
   @HttpCode(200)
   getUser(@Param('id') id: string) {
     return this.userService.findOne(id);
-  }
-  @Get('/purchase/:id')
-  getUserPurchase(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.getOrderByUser(id);
   }
   @Post()
   @HttpCode(202)
@@ -63,7 +60,14 @@ export class UserController {
       data: answer,
     };
   }
-
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() payload: updateUserDTO) {
+    return;
+  }
+  @Get('/purchase/:id')
+  getUserPurchase(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.getOrderByUser(id);
+  }
   // @Delete(':id')
   // deleteUser(@Param('id', ParseIntPipe) id: number) {
   //   this.userService.deleteOne(id);

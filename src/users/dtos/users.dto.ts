@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 export class createUserDTO {
   @ApiProperty({ description: 'Nombre de la persona', title: 'nombre' })
   name: string;
@@ -13,3 +13,4 @@ export class createUserDTO {
   @ApiProperty({ description: 'contrasena encriptada' })
   password: string;
 }
+export class updateUserDTO extends PartialType(createUserDTO) {}
