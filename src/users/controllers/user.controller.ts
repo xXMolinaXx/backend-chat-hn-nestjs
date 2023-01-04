@@ -23,16 +23,6 @@ import { UserService } from '../services/user.service';
 @Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
-  @Get()
-  @HttpCode(200)
-  getUsers() {
-    return this.userService.findAll();
-  }
-  @Get('getOne/:id')
-  @HttpCode(200)
-  getUser(@Param('id') id: string) {
-    return this.userService.findOne(id);
-  }
   @Post()
   @HttpCode(202)
   async createUser(
@@ -82,10 +72,20 @@ export class UserController {
       throw new HttpException('Hubo un error', HttpStatus.UNAUTHORIZED);
     }
   }
-  @Get('/purchase/:id')
-  getUserPurchase(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.getOrderByUser(id);
-  }
+  // @Get()
+  // @HttpCode(200)
+  // getUsers() {
+  //   return this.userService.findAll();
+  // }
+  // @Get('getOne/:id')
+  // @HttpCode(200)
+  // getUser(@Param('id') id: string) {
+  //   return this.userService.findOne(id);
+  // }
+  // @Get('/purchase/:id')
+  // getUserPurchase(@Param('id', ParseIntPipe) id: number) {
+  //   return this.userService.getOrderByUser(id);
+  // }
   // @Delete(':id')
   // deleteUser(@Param('id', ParseIntPipe) id: number) {
   //   this.userService.deleteOne(id);

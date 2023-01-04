@@ -20,37 +20,37 @@ Nota: @Controller ya nos crea la ruta por defecto de products, los metodos get s
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {} //inyeccion de metodos
-  @Get('all')
-  newEndPoint() {
-    return this.productsService.findAll();
-  }
-  @Get(':id')
-  getProduct(@Param('id', ParseIntPipe) id: number) {
-    //IMPORTANT
-    return this.productsService.findOne(id);
-  }
-  @Get('2/:id')
-  getProduct2(@Param('id', PipePipe) id: number) {
-    //IMPORTANT pipe
-    return this.productsService.findOne(id);
-  }
-  @Post()
-  set(@Body() params: any) {
-    //return params;
-    this.productsService.create(params);
-  }
-  @Post('/post')
-  set2(@Body() params: CreateProductsDto) {
-    //return params;
-    this.productsService.create(params);
-  }
-  @Put(':id')
-  update(@Param('id') id: any, @Body() payload: any) {
-    return { id, payload };
-  }
-  @Delete(':id')
-  @HttpCode(HttpStatus.OK)
-  delete(@Param('id') id: any, @Body() payload: any) {
-    return id;
-  }
+  // @Get('all')
+  // newEndPoint() {
+  //   return this.productsService.findAll();
+  // }
+  // @Get(':id')
+  // getProduct(@Param('id', ParseIntPipe) id: number) {
+  //   //IMPORTANT
+  //   return this.productsService.findOne(id);
+  // }
+  // @Get('2/:id')
+  // getProduct2(@Param('id', PipePipe) id: number) {
+  //   //IMPORTANT pipe
+  //   return this.productsService.findOne(id);
+  // }
+  // @Post()
+  // set(@Body() params: any) {
+  //   //return params;
+  //   this.productsService.create(params);
+  // }
+  // @Post('/post')
+  // set2(@Body() params: CreateProductsDto) {
+  //   //return params;
+  //   this.productsService.create(params);
+  // }
+  // @Put(':id')
+  // update(@Param('id') id: any, @Body() payload: any) {
+  //   return { id, payload };
+  // }
+  // @Delete(':id')
+  // @HttpCode(HttpStatus.OK)
+  // delete(@Param('id') id: any, @Body() payload: any) {
+  //   return id;
+  // }
 }
