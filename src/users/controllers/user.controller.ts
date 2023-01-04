@@ -37,7 +37,7 @@ export class UserController {
     return this.userService.getOrderByUser(id);
   }
   @Post()
-  @HttpCode(201)
+  @HttpCode(202)
   async createUser(
     @Body() newUser: createUserDTO,
   ): Promise<answerPeticionsInterface> {
