@@ -7,7 +7,7 @@ import {
   userLoginInterface,
 } from 'src/common/interfaces/answer.interface';
 import { ProductsService } from 'src/products/services/products.service';
-import { createUserDTO } from '../dtos/users.dto';
+import { createUserDTO, updateUserDTO } from '../dtos/users.dto';
 import { users } from '../entities/users.entity';
 import { response } from 'express';
 
@@ -34,6 +34,13 @@ export class UserService {
     }
     return;
   }
+  async updateOne(id: string, user: updateUserDTO): Promise<any> {
+    const answer = await this.userModel.updateOne(
+      { _id: id },
+      { $set: { ...user } },
+    );
+    return answer;
+  }
   async login(
     userLogin: userLoginInterface,
   ): Promise<Record<string, never> | users> {
@@ -42,10 +49,10 @@ export class UserService {
     if (userLogged?.password !== password) return {};
     return userLogged;
   }
-  // deleteOne(id) {
-  //   this.users = this.users.filter((el) => el.id !== id);
-  //   return true;
-  // }
+  async deleteOne(id): Promise<any> {
+    const answer = await this.userModel.findOneAndDelete({ _id: id });
+    return answer;
+  }
   getOrderByUser(id: number) {
     const user = this.findOne(id);
     const purchase = this.productsService.findAll();

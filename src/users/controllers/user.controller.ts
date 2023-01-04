@@ -61,8 +61,26 @@ export class UserController {
     };
   }
   @Put(':id')
-  async update(@Param('id') id: string, @Body() payload: updateUserDTO) {
-    return;
+  async update(
+    @Param('id') id: string,
+    @Body() payload: updateUserDTO,
+  ): Promise<answerPeticionsInterface> {
+    try {
+      const answer = await this.userService.updateOne(id, payload);
+      return { statusCode: 200, message: 'usuario actualizado', data: answer };
+    } catch (error) {
+      throw new HttpException('datos Incorrectos', HttpStatus.UNAUTHORIZED);
+    }
+  }
+  @Delete('/:id')
+  async delete(@Param('id') id: string) {
+    try {
+      const answer = await this.userService.deleteOne(id);
+      return { statusCode: 200, message: 'usuario Eliminado', data: answer };
+    } catch (error) {
+      console.log(error.message);
+      throw new HttpException('Hubo un error', HttpStatus.UNAUTHORIZED);
+    }
   }
   @Get('/purchase/:id')
   getUserPurchase(@Param('id', ParseIntPipe) id: number) {
