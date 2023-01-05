@@ -1,15 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import * as bcrypt from 'bcrypt';
 
-import {
-  answerPeticionsInterface,
-  userLoginInterface,
-} from 'src/common/interfaces/answer.interface';
+import { userLoginInterface } from 'src/common/interfaces/answer.interface';
 import { ProductsService } from 'src/products/services/products.service';
 import { createUserDTO, updateUserDTO } from '../dtos/users.dto';
 import { users } from '../entities/users.entity';
-import { response } from 'express';
 
 // (interacion entre modulos)IMPORTANT
 @Injectable()
@@ -25,11 +22,13 @@ export class UserService {
     return this.userModel.find().exec();
   }
   async insertOne(newUser: createUserDTO): Promise<any> {
+    const salt = await bcrypt.genSalt();
+    const hash = await bcrypt.hash(newUser.password, salt);
     const findUser = await this.userModel
       .findOne({ userName: newUser.userName })
       .exec();
     if (!findUser) {
-      const user = new this.userModel(newUser);
+      const user = new this.userModel({ ...newUser, password: hash });
       return await user.save();
     }
     return;
@@ -46,7 +45,8 @@ export class UserService {
   ): Promise<Record<string, never> | users> {
     const { userName, password } = userLogin;
     const userLogged = await this.userModel.findOne({ userName: userName });
-    if (userLogged?.password !== password) return {};
+    const isMatch = await bcrypt.compare(password, userLogged?.password);
+    if (!isMatch) return {};
     return userLogged;
   }
   async deleteOne(id): Promise<any> {
