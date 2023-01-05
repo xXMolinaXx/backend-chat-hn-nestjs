@@ -45,7 +45,7 @@ export class UserController {
         HttpStatus.UNAUTHORIZED,
       );
     return {
-      statusCode: 201,
+      statusCode: 201 ,
       message: 'El usuario ingreso correctamente',
       data: answer,
     };
