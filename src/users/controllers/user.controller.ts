@@ -23,6 +23,11 @@ import { UserService } from '../services/user.service';
 @Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
+  @Get(':id')
+  @HttpCode(200)
+  getUser(@Param('id') id: string) {
+    return this.userService.findOne(id);
+  }
   @Post()
   @HttpCode(202)
   async createUser(
@@ -45,7 +50,7 @@ export class UserController {
         HttpStatus.UNAUTHORIZED,
       );
     return {
-      statusCode: 201 ,
+      statusCode: 201,
       message: 'El usuario ingreso correctamente',
       data: answer,
     };
@@ -76,11 +81,6 @@ export class UserController {
   // @HttpCode(200)
   // getUsers() {
   //   return this.userService.findAll();
-  // }
-  // @Get('getOne/:id')
-  // @HttpCode(200)
-  // getUser(@Param('id') id: string) {
-  //   return this.userService.findOne(id);
   // }
   // @Get('/purchase/:id')
   // getUserPurchase(@Param('id', ParseIntPipe) id: number) {
