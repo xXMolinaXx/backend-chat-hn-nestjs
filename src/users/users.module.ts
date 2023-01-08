@@ -18,5 +18,6 @@ import { UserSchema, users } from './entities/users.entity';
   ], //(interacion entre modulos)IMPORTANT : this is the way to import the services to other module
   providers: [UserService],
   controllers: [UserController, OtherController],
+  exports: [UserService],
 })
 export class UsersModule {}
