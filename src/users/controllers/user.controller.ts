@@ -73,7 +73,6 @@ export class UserController {
       const answer = await this.userService.deleteOne(id);
       return { statusCode: 200, message: 'usuario Eliminado', data: answer };
     } catch (error) {
-      console.log(error.message);
       throw new HttpException('Hubo un error', HttpStatus.UNAUTHORIZED);
     }
   }
