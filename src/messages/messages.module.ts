@@ -1,9 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import {
-  message,
-  MessageSchema,
-} from './entities/messages.entity';
+import { message, MessageSchema } from './entities/messages.entity';
 import { MessagesService } from './services/messages.service';
 
 @Module({
