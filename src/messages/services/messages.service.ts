@@ -28,7 +28,17 @@ export class MessagesService {
       return await messageAnswer.save();
     } else {
       await this.messageModel
-        .updateOne({ _id: messageAnswer._id }, { $push: { message: message } })
+        .updateOne(
+          { _id: messageAnswer._id },
+          {
+            $push: {
+              message: {
+                $each: [message],
+                $position: 0,
+              },
+            },
+          },
+        )
         .exec();
       return this.messageModel.findById(messageAnswer._id);
     }

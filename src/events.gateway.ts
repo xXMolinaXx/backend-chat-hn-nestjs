@@ -44,14 +44,22 @@ export class EventsGateway {
   }
   @SubscribeMessage('chating')
   async updateReadMessage(@MessageBody() data: any) {
-    const { userLogged, userTochat, message } = data;
-    const messages = await this.messageService.createMessage({
-      message,
-      userReceivingId: userTochat._id,
-      userSendingId: userLogged._id,
-    });
-    this.server.to(userLogged.socketId).emit('transfering messages', messages);
-    this.server.to(userTochat.socketId).emit('transfering messages', messages);
+    try {
+      const { userLogged, userTochat, message } = data;
+      const messages = await this.messageService.createMessage({
+        message,
+        userReceivingId: userTochat._id,
+        userSendingId: userLogged._id,
+      });
+      this.server
+        .to(userLogged.idSocket)
+        .emit('transfering messages', messages);
+      this.server
+        .to(userTochat.idSocket)
+        .emit('transfering messages', messages);
+    } catch (error) {
+      console.log('error', error);
+    }
   }
   // @SubscribeMessage('events')
   // findAll(@MessageBody() data: any): Observable<WsResponse<number>> {
