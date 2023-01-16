@@ -7,4 +7,5 @@ export interface MessageDataInterface {
   sendAtd: Date;
   message: string;
   userId: string;
+  seen: boolean;
 }
