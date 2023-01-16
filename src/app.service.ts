@@ -10,7 +10,13 @@ export class AppService {
   ) {}
   getHello(): string {
     console.log(this.task[0]); //useFactory
-    return `Hello World! ${this.apiKey} --`; /**useValue and useClass */
+    //return `Hello World! ${this.apiKey} -- \n escribe /docs despues de lo que ya hay en la barra de busqueda para entrar a la documentacions`; /**useValue and useClass */
+    return `
+    <div >
+    <h1 style="text-align: center">Hola, Api chat<h1>
+    <a style="text-align: center" href="docs" title="Die Homepage" rel="nofollow">Documentacion</a>
+    </div>
+    `;
   }
   async getUser() {
     const usersCollection = this.dataBase.collection('users');

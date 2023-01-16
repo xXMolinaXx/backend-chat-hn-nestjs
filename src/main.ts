@@ -9,8 +9,8 @@ async function bootstrap() {
   app.enableCors();
   // Configuración Swagger en NestJS
   const config = new DocumentBuilder()
-    .setTitle('Platzi API')
-    .setDescription('Documentación Platzi API')
+    .setTitle('chat api')
+    .setDescription('Documentacion de chat')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
