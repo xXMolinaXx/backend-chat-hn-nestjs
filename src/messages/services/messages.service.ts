@@ -44,7 +44,7 @@ export class MessagesService {
     }
   }
   async readMessage(userId1: string, userId2: string) {
-    const messages = await this.messageModel.find({
+    const messages = await this.messageModel.findOne({
       users: { $all: [userId1, userId2] },
     });
     return messages;
