@@ -59,4 +59,10 @@ export class UserService {
     const purchaseUser = { user, purchase };
     return purchaseUser; // (interacion entre modulos)IMPORTANT
   }
+  async updateAddFriend(idUser, idFriend): Promise<any> {
+    return await this.userModel.updateOne(
+      { _id: idUser },
+      { $push: { friends: idFriend } },
+    );
+  }
 }
