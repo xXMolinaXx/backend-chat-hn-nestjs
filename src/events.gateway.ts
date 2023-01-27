@@ -22,6 +22,14 @@ export class EventsGateway {
     private messageService: MessagesService,
   ) {}
   afterInit() {
+    this.server.use((socket: any, next) => {
+      const username = socket.handshake.auth.name;
+      if (!username) {
+        return next(new Error('invalid username'));
+      }
+      socket.username = username;
+      next();
+    });
     console.log('inicio del websocket');
   }
   async handleConnection(socket) {
