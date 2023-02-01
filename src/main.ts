@@ -9,7 +9,7 @@ async function bootstrap() {
   app.enableCors();
   // Configuración Swagger en NestJS
   const config = new DocumentBuilder()
-    .setTitle('chat api')
+    .setTitle('Documentation API REST')
     .setDescription('Documentacion de chat')
     .setVersion('1.0')
     .build();
