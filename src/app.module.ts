@@ -9,6 +9,9 @@ import { GlobalModule } from './global/global.module';
 import { EventsGateway } from './events.gateway';
 import { UserService } from './users/services/user.service';
 import { MessagesModule } from './messages/messages.module';
+import { BlogsController } from './blogs/blogs.controller';
+import { BlogsModule } from './blogs/blogs.module';
+import { PruebaController } from './prueba/prueba.controller';
 
 @Module({
   imports: [
@@ -21,8 +24,9 @@ import { MessagesModule } from './messages/messages.module';
       isGlobal: true,
     }),
     MessagesModule,
+    BlogsModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, BlogsController, PruebaController],
   providers: [
     EventsGateway,
     AppService,
