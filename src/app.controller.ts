@@ -1,24 +1,28 @@
-import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
-import { ApiKeyGuard } from './auth/guards/api-key.guard'
+import { Public } from './auth/decorators/public.decorator';
+import { ApiKeyGuard } from './auth/guards/api-key.guard';
+
+@UseGuards(ApiKeyGuard) //it can be added to the method, but this way it can protect al endpoints
 @Controller()
 export class AppController {
   // las rutas no dinamicas deben de colocarse primero
   constructor(private readonly appService: AppService) {}
-
+  //@UseGuards(ApiKeyGuard)
+  @Public() // personal decorator to set a endpoint public
   @Get()
   getHello(): string {
     return this.appService.getHello();
   }
-  @UseGuards(ApiKeyGuard)
+  @Public()
   @Get('/guard')
   getGuard(): string {
     return 'hello world';
   }
-  // @Get('data')
-  // getdata() {
-  //   return this.appService.getUser();
-  // }
+  @Get('data')
+  getdata() {
+    return this.appService.getUser();
+  }
   // @Get('nuevo')
   // newEndPoint() {
   //   return 'soy nuevo';

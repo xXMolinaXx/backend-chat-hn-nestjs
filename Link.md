@@ -1,0 +1,2 @@
+- [ useClass, useValue, useFactory ](https://docs.nestjs.com/fundamentals/custom-providers#value-providers-usevalue)
+- [Global modul](https://docs.nestjs.com/modules#global-modules)
