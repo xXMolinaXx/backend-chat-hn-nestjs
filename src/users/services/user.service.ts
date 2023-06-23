@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
@@ -11,6 +11,7 @@ import { users } from '../entities/users.entity';
 // (interacion entre modulos)IMPORTANT
 @Injectable()
 export class UserService {
+  private readonly logger = new Logger(UserService.name);
   constructor(
     private productsService: ProductsService /*(interacion entre modulos)IMPORTANT*/,
     @InjectModel(users.name) private userModel: Model<users>,
@@ -43,11 +44,19 @@ export class UserService {
   async login(
     userLogin: userLoginInterface,
   ): Promise<Record<string, never> | users> {
-    const { userName, password } = userLogin;
-    const userLogged = await this.userModel.findOne({ userName: userName });
-    const isMatch = await bcrypt.compare(password, userLogged?.password);
-    if (!isMatch) return {};
-    return userLogged;
+    try {
+      const { userName, password } = userLogin;
+      const userLogged = await this.userModel.findOne({ userName: userName });
+      if (userLogged) {
+        const isMatch = await bcrypt.compare(password, userLogged?.password);
+        if (!isMatch) return {};
+        return userLogged;
+      } else {
+        return {};
+      }
+    } catch (error: any) {
+      this.logger.error(error.toString());
+    }
   }
   async deleteOne(id): Promise<any> {
     const answer = await this.userModel.findOneAndDelete({ _id: id });

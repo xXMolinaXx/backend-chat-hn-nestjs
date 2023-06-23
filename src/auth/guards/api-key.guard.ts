@@ -27,7 +27,7 @@ export class ApiKeyGuard implements CanActivate {
     const authHeader = REQUEST.header('Authorization');
     const AUTH = authHeader === this.configService.get<string>('API_PASS');
     if (!AUTH) {
-      throw new UnauthorizedException('no tiene permiso mi papa');
+      throw new UnauthorizedException('no tienes permiso a estos servicios');
     }
     return true;
   }
