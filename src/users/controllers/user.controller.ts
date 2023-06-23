@@ -44,7 +44,7 @@ export class UserController {
     @Body() user: userLoginInterface,
   ): Promise<answerPeticionsInterface> {
     const answer = await this.userService.login(user);
-    if (!answer.userName)
+    if (!answer?.userName)
       throw new HttpException(
         'usuario y contrasena incorrectos',
         HttpStatus.UNAUTHORIZED,
