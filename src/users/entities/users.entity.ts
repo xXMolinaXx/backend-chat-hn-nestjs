@@ -3,6 +3,8 @@ import { Document } from 'mongoose';
 import { type } from 'os';
 @Schema({ timestamps: true })
 export class users extends Document {
+  @Prop()
+  _id: string;
   @Prop({ required: true })
   name: string;
   @Prop({ required: true })
