@@ -7,6 +7,7 @@ import { userLoginInterface } from 'src/common/interfaces/answer.interface';
 import { ProductsService } from 'src/products/services/products.service';
 import { createUserDTO, updateUserDTO } from '../dtos/users.dto';
 import { users } from '../entities/users.entity';
+import { ObjectId } from 'mongodb';
 
 // (interacion entre modulos)IMPORTANT
 @Injectable()
@@ -17,7 +18,8 @@ export class UserService {
     @InjectModel(users.name) private userModel: Model<users>,
   ) {}
   findOne(id) {
-    return this.userModel.findById(id).exec();
+    this.logger.debug(id);
+    return this.userModel.findById(new ObjectId(id)).exec();
   }
   findAll() {
     return this.userModel.find().exec();

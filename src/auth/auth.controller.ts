@@ -1,7 +1,8 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiTags } from '@nestjs/swagger';
 import { LogInDto } from './auth.dto';
+import { Role:rolesEnum } from "./../common/enums/roles.enum";
 
 @Controller('auth')
 @ApiTags('Auth')
@@ -15,5 +16,10 @@ export class AuthController {
       password: signInDto.password,
       userName: signInDto.username,
     });
+  }
+  Roles(rolesEnum.Admin)
+  @Get()
+  roleEndPoint() {
+    return 'Hola eres un admin';
   }
 }

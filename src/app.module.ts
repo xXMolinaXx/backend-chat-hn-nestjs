@@ -11,6 +11,7 @@ import { UserService } from './users/services/user.service';
 import { MessagesModule } from './messages/messages.module';
 import { BlogsModule } from './blogs/blogs.module';
 import { AuthModule } from './auth/auth.module';
+import { ArticlesModule } from './articles/articles.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
     MessagesModule,
     BlogsModule,
     AuthModule,
+    ArticlesModule,
   ],
   controllers: [AppController],
   providers: [
