@@ -35,6 +35,20 @@ export class ArticlesService {
       };
     }
   }
+  async read(mongoId): Promise<answerEndPoint> {
+    try {
+      this.articleModel.findById(mongoId);
+      return {
+        success: true,
+        message: '',
+      };
+    } catch (error: any) {
+      return {
+        success: false,
+        message: error.toString(),
+      };
+    }
+  }
   async delete(mongoId) {
     try {
       const user = await this.articleModel.deleteOne({ _id: mongoId });

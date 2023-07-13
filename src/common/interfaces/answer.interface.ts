@@ -11,4 +11,5 @@ export interface userLoginInterface {
 export interface answerEndPoint {
   success: boolean;
   message: string;
+  data?: any;
 }

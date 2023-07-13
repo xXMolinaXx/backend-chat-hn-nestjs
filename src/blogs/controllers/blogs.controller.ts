@@ -5,9 +5,6 @@ export class BlogsController {
   @Post('')
   createArticle(@Body() params) {
     try {
-      
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   }
 }
