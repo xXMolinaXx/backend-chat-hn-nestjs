@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Article } from './article.entity';
+import { Article } from '../schemas/article.entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { answerEndPoint } from 'src/common/interfaces/answer.interface';
-import { articleDto } from './articles.dto';
+import { articleDto } from '../dtos/articles.dto';
 import { UserService } from 'src/users/services/user.service';
 
 @Injectable()

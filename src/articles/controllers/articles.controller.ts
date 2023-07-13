@@ -1,6 +1,6 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-import { ArticlesService } from './articles.service';
-import { articleDto } from './articles.dto';
+import { ArticlesService } from '../services/articles.service';
+import { articleDto } from '../dtos/articles.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiKeyGuard } from 'src/auth/guards/api-key.guard';
 import { Public } from 'src/auth/decorators/public.decorator';
