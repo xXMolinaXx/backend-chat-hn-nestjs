@@ -3,8 +3,6 @@ import { Document } from 'mongoose';
 import { type } from 'os';
 @Schema({ timestamps: true })
 export class users extends Document {
-  @Prop()
-  _id: string;
   @Prop({ required: true })
   name: string;
   @Prop({ required: true })
@@ -19,6 +17,8 @@ export class users extends Document {
   password: string;
   @Prop({ type: [String], default: [] })
   friends: string[];
+  @Prop({ type: [String], default: [] })
+  roles: string[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(users);

@@ -8,6 +8,7 @@ import { ProductsService } from 'src/products/services/products.service';
 import { createUserDTO, updateUserDTO } from '../dtos/users.dto';
 import { users } from '../entities/users.entity';
 import { ObjectId } from 'mongodb';
+import { Role } from 'src/common/enums/roles.enum';
 
 // (interacion entre modulos)IMPORTANT
 @Injectable()
@@ -25,16 +26,25 @@ export class UserService {
     return this.userModel.find().exec();
   }
   async insertOne(newUser: createUserDTO): Promise<any> {
-    const salt = await bcrypt.genSalt();
-    const hash = await bcrypt.hash(newUser.password, salt);
-    const findUser = await this.userModel
-      .findOne({ userName: newUser.userName })
-      .exec();
-    if (!findUser) {
-      const user = new this.userModel({ ...newUser, password: hash });
-      return await user.save();
+    try {
+      const salt = await bcrypt.genSalt();
+      const hash = await bcrypt.hash(newUser.password, salt);
+      const findUser = await this.userModel
+        .findOne({ userName: newUser.userName })
+        .exec();
+      if (!findUser) {
+        const user = new this.userModel({
+          ...newUser,
+          password: hash,
+          roles: [Role.User],
+        });
+        return await user.save();
+      }
+      return;
+    } catch (error: any) {
+      this.logger.error(error.toString());
+      return error.toString();
     }
-    return;
   }
   async updateOne(id: string, user: updateUserDTO): Promise<any> {
     const answer = await this.userModel.updateOne(

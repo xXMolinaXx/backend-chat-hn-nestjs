@@ -13,11 +13,14 @@ export class AuthService {
 
   async signIn(dataLogin: userLoginInterface): Promise<any> {
     const user = await this.usersService.login(dataLogin);
-    if (!user) {
+    if (!user?._id) {
       throw new UnauthorizedException();
     }
-    this.logger.debug(user);
-    const payload = { sub: user._id, username: user.userName };
+    const payload = {
+      sub: user._id,
+      username: user.userName,
+      roles: user.roles,
+    };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
